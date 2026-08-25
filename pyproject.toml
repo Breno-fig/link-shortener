@@ -1,0 +1,27 @@
+[project]
+name = "bostatest"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "breno-fig", email = "brenoicarocf@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.141.1",
+]
+
+[project.scripts]
+bostatest = "bostatest:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.workspace]
+members = [
+    "bostatest",
+]
+
+[tool.fastapi]
+entrypoint = "src.main:app" #shows entrypoint
