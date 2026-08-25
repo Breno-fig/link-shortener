@@ -4,6 +4,8 @@ from enum import Enum
 
 app = FastAPI()
 
+Fake_Items_DB = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+
 class ModelName(str, Enum):
     breno = "breno"
     adriel = "adriel"
@@ -22,14 +24,24 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: str | None = None): #| None = None means that the parameter is optional
-    return {"item_id": item_id, "q": q}
+def read_item(item_id: str, q: str | None = None, short: bool = False): #| None = None means that the parameter is optional
+    item = {"item_id": item_id}
+    if q:
+        item.update({"q": q})
+    if not short:
+        item.update(
+            {"description": "This is an amazing item that has a long description"}
+        )
+    return item
 
 
-    @app.get("/files/{file_path:path}")
-    def read_file(file_path:str):
-        return {"file_path": file_path}
+@app.get("/files/{file_path:path}")
+def read_file(file_path:str):
+    return {"file_path": file_path}
 
+@app.get("/items/fake_items/")
+async def read_fake_items(skip: int = 0, limit: int = 10):
+    return Fake_Items_DB[skip : skip + limit]
 
 
 
