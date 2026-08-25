@@ -11,17 +11,19 @@ dependencies = [
     "fastapi[standard]>=0.141.1",
 ]
 
-[project.scripts]
-bostatest = "bostatest:main"
+[tool.fastapi]
+entrypoint = "src.main:app" #shows entrypoint
 
-[build-system]
-requires = ["uv_build>=0.12.5,<0.13.0"]
-build-backend = "uv_build"
 
 [tool.uv.workspace]
 members = [
     "bostatest",
 ]
 
-[tool.fastapi]
-entrypoint = "src.main:app" #shows entrypoint
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
