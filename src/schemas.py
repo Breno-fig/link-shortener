@@ -10,7 +10,7 @@ class URL(URL_base):
     class Config:
         from_attributes = True
 
-class URL_conf(URL):
+class URL_info(URL):
     url: str
     admin_url: str
 
