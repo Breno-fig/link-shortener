@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class URL_base(BaseModel):
+class URL_base(BaseModel): 
     target_url: str
 
 class URL(URL_base):
