@@ -33,7 +33,7 @@ If you have suggestions, feedback, or would like to contribute, feel free to rea
 
 ---
 
-#### Configuring .env
+### Configuring .env
 ```
 #~/link-shortener/.env
 
