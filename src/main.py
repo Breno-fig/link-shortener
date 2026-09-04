@@ -1,4 +1,4 @@
-import secrets
+import secrets, string
 
 from .schemas import URL_info #needed to have a Request Body parameter
 from sqlalchemy.orm import Session 
@@ -27,10 +27,22 @@ def raise_bad_request(message):
     raise HTTPException(status_code=400, detail=message)
 
 
-@app.post("/url")
-def create_url(url: URL_info):  #URL is a pydantic model that validates the input data 
-                                #     // it's a REQUEST BODY
+@app.post("/url", response_model=URL_info) #response model is the model that will be returned to the user
+def create_url(url: schemas.URL_base, db: Session = Depends(get_db)):
     if not validators.url(url.target_url): #checks if its a valid URL
         return raise_bad_request(message="URL not valid")
-    return {"TODO: create dabase entry for": url.target_url} 
     
+    characters = string.ascii_letters
+    key = ''.join(secrets.choice(characters)for i in range(5)) #generates a random 5 character string based on characters
+    secret_key = ''.join(secrets.choice(characters)for i in range(8)) #same but for the admin
+    db_URL = models.URL( #url that will be inserted into the database
+        target_url=url.target_url, #db_URL receives it, but the function does not return it in the JSON response 
+        key = key,
+        secret_key = secret_key
+    )
+    db.add(db_URL)
+    db.commit()
+    db.refresh(db_URL) #refreshes the db_URL object with the new data from the database
+    db_URL.url = key
+    db_URL.admin_url = secret_key
+    return db_URL

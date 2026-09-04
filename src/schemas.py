@@ -4,8 +4,8 @@ class URL_base(BaseModel):
     target_url: str
 
 class URL(URL_base):
-    active: bool
-    access: int
+    is_active: bool
+    clicks: int
 
     class Config:
         from_attributes = True
