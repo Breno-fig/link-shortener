@@ -55,3 +55,8 @@ $uv run fastapi dev
 ```
 
 If your .env is empty you can just go to the link provided by uv and test the features on the /docs endpoint that FastAPI provides.
+
+---
+
+### Accessing via /docs
+To use the shortener you'll need to (for now) access the /docs endpoint that FastAPI provides.
