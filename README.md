@@ -42,3 +42,16 @@ BASE_URL="[URL to the link shortener]"
 DB_URL="[you db url]"
 ```
 you can leave those empty or simply not have anything on .env, but make shure your .env file exists and it's at /link-shortener/.env
+
+---
+
+### Running the shortener
+First, you'll need to have uv installed (since it's what I'm using in this project). 
+
+Once you've installed uv, run:
+```bash
+$uv sync
+$uv run fastapi dev
+```
+
+If your .env is empty you can just go to the link provided by uv and test the features on the /docs endpoint that FastAPI provides.

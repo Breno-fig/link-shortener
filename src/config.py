@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     env_name: str = "Local" #default name of current enviroment
     base_url: str = "http://localhost:8000" #default app domain
-    db_url: str = "sqlite:///./shortener.db" #default db address
+    db_url: str = "sqlite:///./database.db" #default db address
 
     model_config = SettingsConfigDict(
         env_file=".env",
