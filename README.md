@@ -60,3 +60,8 @@ If your .env is empty you can just go to the link provided by uv and test the fe
 
 ### Accessing via /docs
 To use the shortener you'll need to (for now) access the /docs endpoint that FastAPI provides.
+
+If you're running locally via uvicorn, access the url provided and go to the /docs endpoint. 
+
+![FastAPI Docs](./FastAPI-Docs.png)
+

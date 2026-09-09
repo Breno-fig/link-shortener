@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Boolean
 from .database import Base
 
 class URL(Base):
-    __tablename__ = "url2" #name of the table in the database
+    __tablename__ = "url" #name of the table in the database
 
     id = Column(Integer, primary_key=True) #id is the primary key of the table
     key = Column(String, unique=True, index=True) #keeps the random string that will be used to access the URL
