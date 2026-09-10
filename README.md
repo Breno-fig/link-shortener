@@ -26,6 +26,28 @@ $ uv run fastapi dev
 
 If your .env is empty you can just go to the link provided by uv and test the features on the /docs endpoint that FastAPI provides.
 
+### Backend structure
+
+The backend follows the same organization as the reference template:
+
+```
+backend/app/
+├── api/
+│   ├── deps.py
+│   └── routes/urls.py
+├── core/
+│   ├── config.py
+│   └── db.py
+├── crud.py
+├── models.py
+├── schemas.py
+└── main.py
+```
+
+The FastAPI application is assembled in `backend/app/main.py`; API routes,
+database dependencies, configuration, and persistence code live in their
+respective subpackages.
+
 ---
 
 ### Accessing via /docs
@@ -34,4 +56,3 @@ To use the shortener you'll need to (for now) access the /docs endpoint that Fas
 If you're running locally via uvicorn, access the url provided and go to the /docs endpoint. 
 
 ![FastAPI Docs](./FastAPI-Docs.png)
-
